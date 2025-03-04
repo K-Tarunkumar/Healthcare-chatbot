@@ -1,6 +1,4 @@
-Here’s a polished and concise `README.md` for your **Healthcare Chatbot** project, inspired by the structure you provided:
 
----
 
 # Healthcare Chatbot
 
