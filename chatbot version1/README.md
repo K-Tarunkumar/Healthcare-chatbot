@@ -1,6 +1,3 @@
-Here’s a polished and concise `README.md` for your **Healthcare Chatbot (Version 1)**:
-
----
 
 # Healthcare Chatbot (Version 1)
 
