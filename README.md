@@ -36,11 +36,6 @@ This project consists of two versions of a **Healthcare Chatbot** designed to as
 
 ---
 
-## Live Web Application (Version 2)
-- **Frontend**: [https://healthcare-chatbot.onrender.com](https://healthcare-chatbot.onrender.com)
-- **Backend API**: [https://healthcare-chatbot-api.onrender.com](https://healthcare-chatbot-api.onrender.com)
-
----
 
 ## Setup Instructions
 
