@@ -1,101 +1,169 @@
+Here’s a combined `README.md` for both **Version 1** and **Version 2** of your **Healthcare Chatbot** project. This document provides an overview of both versions, their features, setup instructions, and usage.
+
+---
 
 # Healthcare Chatbot
 
 ## Overview
-This project is a **Healthcare Chatbot** designed to assist users with medical queries. It uses **FastAPI** for the backend, **Streamlit** for the frontend, and **Pinecone** for vector storage and retrieval. The chatbot leverages **OpenAI's GPT model** to provide accurate and context-aware medical answers.
+This project consists of two versions of a **Healthcare Chatbot** designed to assist users with medical queries. Each version uses different approaches and technologies to provide accurate and context-aware medical answers.
 
 ---
 
+## Versions
 
-
-## Features
-- **Medical Query Handling**: Answers medical-related questions using a retrieval-augmented generation (RAG) pipeline.
-- **Non-Medical Query Handling**: Answers general questions using OpenAI's GPT model.
-- **Chat Interface**: A user-friendly Streamlit-based chat interface.
-- **Source Attribution**: Displays sources for medical answers (if available).
-- **Real-Time Communication**: Uses WebSocket for seamless interaction between the frontend and backend.
+### **Version 1**
+- **Approach**: Rule-based with Decision Tree Classifier and SVM.
+- **Features**:
+  - Symptom analysis and disease prediction.
+  - Disease descriptions and precautionary measures.
+  - Severity assessment of symptoms.
+- **Tech Stack**:
+  - Python, Pandas, Scikit-learn.
+  - Decision Tree Classifier, Support Vector Machine (SVM).
 
 ---
 
-## Tech Stack
-- **Frontend**: Streamlit, HTML, CSS
-- **Backend**: FastAPI, Uvicorn
-- **AI Models**: OpenAI GPT, LangChain
-- **Vector Storage**: Pinecone
-- **Authentication**: JWT (if applicable)
-- **Hosting**: Docker, Render
+### **Version 2**
+- **Approach**: Retrieval-Augmented Generation (RAG) with OpenAI GPT and Pinecone.
+- **Features**:
+  - Medical and non-medical query handling.
+  - Context-aware answers using OpenAI GPT.
+  - Source attribution for medical answers.
+  - Real-time communication via WebSocket.
+- **Tech Stack**:
+  - FastAPI (backend), Streamlit (frontend).
+  - OpenAI GPT, LangChain, Pinecone.
+
+---
+
+## Live Web Application (Version 2)
+- **Frontend**: [https://healthcare-chatbot.onrender.com](https://healthcare-chatbot.onrender.com)
+- **Backend API**: [https://healthcare-chatbot-api.onrender.com](https://healthcare-chatbot-api.onrender.com)
 
 ---
 
 ## Setup Instructions
 
-### 1. Clone the Repository
-```bash
-git clone https://github.com/K-Tarunkumar/Healthcare-chatbot.git
-cd Healthcare-chatbot
-```
+### **Version 1**
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/K-Tarunkumar/Healthcare-chatbot.git
+   cd Healthcare-chatbot/chatbot\ version1
+   ```
 
-### 2. Set Up a Virtual Environment
-```bash
-python -m venv venv
-```
+2. Install dependencies:
+   ```bash
+   pip install pandas scikit-learn
+   ```
 
-- **Activate the Virtual Environment**:
-  - On Windows:
-    ```bash
-    venv\Scripts\activate
-    ```
-  - On macOS/Linux:
-    ```bash
-    source venv/bin/activate
-    ```
-
-### 3. Install Dependencies
-```bash
-pip install -r requirements.txt
-```
-
-### 4. Set Up Environment Variables
-Create a `.env` file in the root directory with the following content:
-```plaintext
-OPENAI_API_KEY=your_openai_api_key
-PINECONE_API_KEY=your_pinecone_api_key
-PINECONE_ENV=your_pinecone_environment
-```
-
-Replace `your_openai_api_key`, `your_pinecone_api_key`, and `your_pinecone_environment` with your actual API keys.
-
-### 5. Run with Docker
-```bash
-docker-compose up --build
-```
-
-### 6. Access the App
-Open your browser and go to:
-- **Frontend**: [http://localhost:8501](http://localhost:8501)
-- **Backend API**: [http://localhost:8000](http://localhost:8000)
+3. Run the chatbot:
+   ```bash
+   python chat_bot.py
+   ```
 
 ---
 
-## API Endpoints
-- **Chat**: `POST /chat`
-  - Input: `{"message": "Your medical question"}`
-  - Output: `{"answer": "Bot's response", "sources": [...]}`
+### **Version 2**
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/K-Tarunkumar/Healthcare-chatbot.git
+   cd Healthcare-chatbot
+   ```
 
-- **WebSocket**: `ws://localhost:8000/ws`
-  - Real-time communication for chat interactions.
+2. Set up a virtual environment:
+   ```bash
+   python -m venv venv
+   ```
+
+   - Activate the virtual environment:
+     - On Windows:
+       ```bash
+       venv\Scripts\activate
+       ```
+     - On macOS/Linux:
+       ```bash
+       source venv/bin/activate
+       ```
+
+3. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. Set up environment variables:
+   Create a `.env` file in the root directory with the following content:
+   ```plaintext
+   OPENAI_API_KEY=your_openai_api_key
+   PINECONE_API_KEY=your_pinecone_api_key
+   PINECONE_ENV=your_pinecone_environment
+   ```
+
+5. Run the backend:
+   ```bash
+   uvicorn medical_api:app --reload
+   ```
+
+6. Run the frontend:
+   ```bash
+   streamlit run app.py
+   ```
 
 ---
+
+## Usage
+
+### **Version 1**
+1. Run the `chat_bot.py` script.
+2. Enter your symptoms when prompted.
+3. The chatbot will:
+   - Identify potential diseases.
+   - Provide descriptions and precautions.
+   - Assess symptom severity.
+
+---
+
+### **Version 2**
+1. Open the Streamlit frontend in your browser (`http://localhost:8501`).
+2. Enter your medical or general questions in the chat input box.
+3. The chatbot will:
+   - Answer medical queries using the RAG pipeline.
+   - Answer general queries using OpenAI's GPT model.
+4. Sources for medical answers (if available) will be displayed in the sidebar.
+
+---
+
+## Example Interaction (Version 1)
+```
+Enter the symptom you are experiencing: itching
+Okay. From how many days?: 3
+Are you experiencing skin_rash? (yes/no): yes
+Are you experiencing nodal_skin_eruptions? (yes/no): no
+You may have Fungal infection.
+Description: Fungal infections are caused by fungi and can affect the skin, nails, and hair.
+Take the following measures:
+1) Keep the area clean
+2) Apply antifungal cream
+3) Consult a doctor
+4) Avoid sharing personal items
+```
+
+---
+
+## Example Interaction (Version 2)
+```
+User: What are the symptoms of diabetes?
+Bot: Common symptoms of diabetes include frequent urination, excessive thirst, unexplained weight loss, fatigue, blurred vision, and slow-healing sores. You should consult a healthcare professional for a proper diagnosis.
+
+Note: This information is for educational purposes only and does not constitute medical advice. Please consult with a healthcare professional for personalized medical guidance.
+```
+
+---
+
+## Future Improvements
+- **Expand Dataset**: Add more symptoms and diseases for better accuracy.
+- **User Interface**: Build a GUI for Version 1 using Tkinter, Streamlit, or Flask.
+- **Text-to-Speech**: Use `pyttsx3` to read out predictions and precautions.
+- **Deploy**: Deploy Version 1 as a web application using FastAPI or Flask.
 
 ## GitHub Repository
 GitHub Link: [https://github.com/K-Tarunkumar/Healthcare-chatbot.git](https://github.com/K-Tarunkumar/Healthcare-chatbot.git)
-
-
-
----
-
-## Acknowledgments
-- **OpenAI** for the GPT model.
-- **Pinecone** for vector storage.
-- **FastAPI** and **Streamlit** for backend and frontend frameworks.
-
